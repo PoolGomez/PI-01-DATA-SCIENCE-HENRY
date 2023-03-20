@@ -98,7 +98,7 @@ async def get_max_duration(year:Union[int,None] = None, platform:Union[str,None]
 #---2---
 #Cantidad de películas por plataforma con un puntaje mayor a XX en determinado año 
 # (la función debe llamarse get_score_count(platform, scored, year))
-@app.post("/upload_rating/")
+@app.post("/upload_rating")
 async def post_upload_rating(files: list[UploadFile]):
     #variable lista de dataframe cargados
     df_list=[]
