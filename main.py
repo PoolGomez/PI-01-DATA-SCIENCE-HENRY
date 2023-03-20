@@ -1,5 +1,5 @@
 from fastapi import FastAPI, UploadFile
-from typing import Union
+from typing import Union,List
 from fastapi.responses import RedirectResponse
 import numpy as np
 import pandas as pd
@@ -99,7 +99,7 @@ async def get_max_duration(year:Union[int,None] = None, platform:Union[str,None]
 #Cantidad de películas por plataforma con un puntaje mayor a XX en determinado año 
 # (la función debe llamarse get_score_count(platform, scored, year))
 @app.post("/post_upload_rating")
-async def post_upload_rating(files: list[UploadFile]):
+async def post_upload_rating(files: List[UploadFile]):
     #variable lista de dataframe cargados
     df_list=[]
     #recorrer los ficheros cargados para almacenarnos en la lista
