@@ -25,7 +25,7 @@ def index():
     #return RedirectResponse("https://titles-pg-deploy.onrender.com/docs")
 
 
-@app.post("/upload_titles")
+@app.post("/post_upload_titles")
 async def post_upload_titles(fileAmazon: UploadFile, fileDisney: UploadFile, fileHulu: UploadFile, fileNetflix: UploadFile):
     df_amazon = pd.read_csv(fileAmazon.file)
     df_amazon["platform"] = "amazon"
@@ -84,7 +84,7 @@ async def post_upload_titles(fileAmazon: UploadFile, fileDisney: UploadFile, fil
 #---1---
 #Película con mayor duración con filtros opcionales de AÑO, PLATAFORMA Y TIPO DE DURACIÓN. 
 #(la función debe llamarse get_max_duration(year, platform, duration_type))
-@app.get('/max_duration')
+@app.get('/get_max_duration')
 async def get_max_duration(year:Union[int,None] = None, platform:Union[str,None]='',duration_type:Union[str,None]=''): 
     titles=parameters.DF_TITLES
     if year == None :
@@ -98,7 +98,7 @@ async def get_max_duration(year:Union[int,None] = None, platform:Union[str,None]
 #---2---
 #Cantidad de películas por plataforma con un puntaje mayor a XX en determinado año 
 # (la función debe llamarse get_score_count(platform, scored, year))
-@app.post("/upload_rating")
+@app.post("/post_upload_rating")
 async def post_upload_rating(files: list[UploadFile]):
     #variable lista de dataframe cargados
     df_list=[]
@@ -110,7 +110,7 @@ async def post_upload_rating(files: list[UploadFile]):
     parameters.DF_RATING = df_rating
     return 'files rating uploaded successfully'
 
-@app.get('/score')
+@app.get('/get_score_count/{platform}/{score}/{year}')
 async def get_score_count(platform:str, score:float, year:int):
     df_rating = parameters.DF_RATING
     #
@@ -124,7 +124,7 @@ async def get_score_count(platform:str, score:float, year:int):
 #---3---
 #Cantidad de películas por plataforma con filtro de PLATAFORMA. 
 # (La función debe llamarse get_count_platform(platform))
-@app.get('/count/{platform}')
+@app.get('/get_count_platform/{platform}')
 def get_count_platform(platform:str):
     titles=parameters.DF_TITLES
     df_filter = titles[titles['platform']==platform]
@@ -134,7 +134,7 @@ def get_count_platform(platform:str):
 #---4---
 #Actor que más se repite según plataforma y año. 
 # (La función debe llamarse get_actor(platform, year))
-@app.get('/actor/{plataforma}/{year}')
+@app.get('/get_actor/{plataforma}/{year}')
 def get_actor(platform:str, year:int):
     titles=parameters.DF_TITLES
     df_filter = titles[(titles['platform']==platform) & (titles['release_year']==year)]
