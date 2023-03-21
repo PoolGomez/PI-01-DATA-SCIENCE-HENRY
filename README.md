@@ -15,7 +15,9 @@
 <hr>
 
 ## Deployment:
-Se puede revisar el Deploy en Render [Aqui](https://pi-01-pg-titles.onrender.com)
+Se puede revisar el Deploy en Render 
+Por la poca capacidad del servicio gratuito de render se realizo las pruebas con 1 solo archivo rating.csv y no los 8
+[Aqui](https://pi-01-pg-titles.onrender.com)
 
 <hr> 
 
